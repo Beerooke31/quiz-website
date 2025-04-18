@@ -3,9 +3,14 @@ import { Component } from '@angular/core';
 @Component({
   selector: 'app-home',
   imports: [],
-  templateUrl: './home.component.html',
-  styleUrl: './home.component.css'
+  template: `
+    <section>
+      <form>
+        <input type="text" placeholder="Filter by category" />
+        <button class="primary" type="button">Search</button>
+      </form>
+    </section>
+  `,
+  styleUrls: ['./home.component.css'],
 })
-export class HomeComponent {
-
-}
+export class HomeComponent {}

@@ -57,4 +57,10 @@ export class QuizService {
   getQuizCategoryById(id: number): QuizCategory | undefined {
     return this.quizCategoryList.find((quizCategory) => quizCategory.id === id);
   }
+
+  submitForm(firstName: string, lastName: string, email: string) {
+    console.log(
+      `Signup form submitted: firstName: ${firstName}, lastName: ${lastName}, email: ${email}.`
+    );
+  }
 }

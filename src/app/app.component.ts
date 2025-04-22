@@ -1,13 +1,12 @@
 import { Component } from '@angular/core';
-import { HomeComponent } from './home/home.component';
-import { RouterModule } from '@angular/router';
+// import { HomeComponent } from './home/home.component';
+import { RouterLink, RouterOutlet } from '@angular/router';
 
 @Component({
   selector: 'app-root',
-  imports: [HomeComponent, RouterModule],
+  imports: [RouterLink, RouterOutlet],
   template: ` <main>
-    <a [routerLink]="['/']"
-      >"
+    <a [routerLink]="['/']">
       <header class="brand-name">
         <img
           class="brand-logo"
@@ -16,6 +15,9 @@ import { RouterModule } from '@angular/router';
           aria-hidden="true"
         />
       </header>
+    </a>
+    <a [routerLink]="['signup']">
+      <p class="signup-link">Sign Up For An Account</p>
     </a>
     <section class="content">
       <router-outlet></router-outlet>

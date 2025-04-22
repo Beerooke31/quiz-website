@@ -6,14 +6,37 @@ import { QuizCategory } from '../quizcategory';
 
 @Component({
   selector: 'app-details',
-  imports: [],
-  template: `<p>details works! {{ quizCategoryId }}</p>`,
+  imports: [CommonModule],
+  template: `
+    <!-- <p>details works! {{ quizCategoryId }}</p> -->
+    <article>
+      <img
+        class="quiz-image"
+        [src]="quizCategory?.image"
+        alt="Image of {{ quizCategory?.title }}"
+        crossorigin
+      />
+      <section class="quiz-description">
+        <h2 class="quiz-heading">{{ quizCategory?.title }}</h2>
+        <p class="quiz-category">Quiz Topic: {{ quizCategory?.type }}</p>
+      </section>
+      <section class="quiz-features">
+        <h2 class="section-heading">About this quiz</h2>
+        <ul>
+          <li>Date created: {{ quizCategory?.date }}</li>
+        </ul>
+      </section>
+    </article>
+  `,
   styleUrl: './details.component.css',
 })
 export class DetailsComponent {
   route: ActivatedRoute = inject(ActivatedRoute);
-  quizCategoryId = -1;
+  quizService = inject(QuizService);
+  quizCategory: QuizCategory | undefined;
+
   constructor() {
-    this.quizCategoryId = Number(this.route.snapshot.params['id']);
+    const quizCategoryId = Number(this.route.snapshot.params['id']);
+    this.quizCategory = this.quizService.getQuizCategoryById(quizCategoryId);
   }
 }

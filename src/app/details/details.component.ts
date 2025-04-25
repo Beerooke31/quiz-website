@@ -36,7 +36,11 @@ export class DetailsComponent {
   quizCategory: QuizCategory | undefined;
 
   constructor() {
-    const quizCategoryId = Number(this.route.snapshot.params['id']);
-    this.quizCategory = this.quizService.getQuizCategoryById(quizCategoryId);
+    const quizCategoryId = parseInt(this.route.snapshot.params['id'], 10);
+    this.quizService
+      .getQuizCategoryById(quizCategoryId)
+      .then((quizCategory) => {
+        this.quizCategory = quizCategory;
+      });
   }
 }

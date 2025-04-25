@@ -35,8 +35,12 @@ export class HomeComponent {
   filteredQuizList: QuizCategory[] = [];
 
   constructor() {
-    this.quizCategoryList = this.quizService.getAllQuizCategories();
-    this.filteredQuizList = this.quizCategoryList;
+    this.quizService
+      .getAllQuizCategories()
+      .then((quizCategoryList: QuizCategory[]) => {
+        this.quizCategoryList = quizCategoryList;
+        this.filteredQuizList = quizCategoryList;
+      });
   }
   filterResults(text: string) {
     if (!text) {

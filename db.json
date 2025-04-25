@@ -42,5 +42,64 @@
       "date": "2025-03-30",
       "type": "Movies"
     }
+  ],
+
+  "quizQuestions": [
+    {
+      "id": 1,
+      "questionOne": "What's your ideal vacation location?",
+      "questionTwo": "Pick a soup",
+      "questionThree": "Choose one character from Winnie the Pooh",
+      "questionFour": "Pick a colour",
+      "questionFive": "What's your favourite drink (out of the given options)?"
+    }
+  ],
+
+  "quizOptions": [
+    {
+      "id": 1,
+      "optionOne": "Japan",
+      "optionTwo": "Bali",
+      "optionThree": "Holland",
+      "optionFour": "Greenland"
+    },
+    {
+      "id": 2,
+      "optionOne": "Gazpacho",
+      "optionTwo": "Laksa",
+      "optionThree": "Pumpkin",
+      "optionFour": "Pea and Ham"
+    },
+    {
+      "id": 3,
+      "optionOne": "Roo",
+      "optionTwo": "Pooh",
+      "optionThree": "Owl",
+      "optionFour": "Eeyore"
+    },
+    {
+      "id": 4,
+      "optionOne": "Pink",
+      "optionTwo": "Yellow",
+      "optionThree": "Orange",
+      "optionFour": "Blue"
+    },
+    {
+      "id": 5,
+      "optionOne": "Gin and Tonic",
+      "optionTwo": "Mojito",
+      "optionThree": "Honeymead",
+      "optionFour": "Guinness"
+    }
+  ],
+
+  "quizResults": [
+    {
+      "id": 1,
+      "resultOne": "Spring",
+      "resultTwo": "Summer",
+      "resultThree": "Autumn",
+      "resultFour": "Winter"
+    }
   ]
 }

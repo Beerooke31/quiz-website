@@ -28,6 +28,20 @@
 .quiz-features li {
   font-size: 14pt;
 }
+
+.option1,
+.option2,
+.option3,
+.option4 {
+  border: 10px solid black;
+  width: 70px;
+  height: 20px;
+  margin: 10px;
+}
+
+.options:hover {
+}
+
 li {
   list-style-type: none;
 }

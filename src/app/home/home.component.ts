@@ -10,13 +10,19 @@ import { QuizService } from '../quiz.service';
   template: `
     <section>
       <form>
-        <input type="text" placeholder="Filter by category" />
-        <button class="primary" type="button">Search</button>
+        <input type="text" placeholder="Filter by category" #filter />
+        <button
+          class="primary"
+          type="button"
+          (click)="filterResults(filter.value)"
+        >
+          Search
+        </button>
       </form>
     </section>
     <section class="results">
       <app-quiz-category
-        *ngFor="let quizCategory of quizCategoryList"
+        *ngFor="let quizCategory of filteredQuizList"
         [quizCategory]="quizCategory"
       ></app-quiz-category>
     </section>
@@ -24,12 +30,21 @@ import { QuizService } from '../quiz.service';
   styleUrls: ['./home.component.css'],
 })
 export class HomeComponent {
-  readonly baseUrl = 'https://unsplash.com';
-
   quizCategoryList: QuizCategory[] = [];
   quizService: QuizService = inject(QuizService);
+  filteredQuizList: QuizCategory[] = [];
 
   constructor() {
     this.quizCategoryList = this.quizService.getAllQuizCategories();
+    this.filteredQuizList = this.quizCategoryList;
+  }
+  filterResults(text: string) {
+    if (!text) {
+      this.filteredQuizList = this.quizCategoryList;
+      return;
+    }
+    this.filteredQuizList = this.quizCategoryList.filter((quizCategory) =>
+      quizCategory?.type.toLowerCase().includes(text.toLowerCase())
+    );
   }
 }

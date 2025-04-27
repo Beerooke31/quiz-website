@@ -44,48 +44,42 @@
     }
   ],
 
-  "quizQuestions": [
+  "quizCards": [
     {
-      "id": 1,
-      "questionOne": "What's your ideal vacation location?",
-      "questionTwo": "Pick a soup",
-      "questionThree": "Choose one character from Winnie the Pooh",
-      "questionFour": "Pick a colour",
-      "questionFive": "What's your favourite drink (out of the given options)?"
-    }
-  ],
-
-  "quizOptions": [
-    {
-      "id": 1,
+      "categoryId": 1,
+      "question": "What's your ideal vacation location?",
       "optionOne": "Japan",
       "optionTwo": "Bali",
       "optionThree": "Holland",
       "optionFour": "Greenland"
     },
     {
-      "id": 2,
+      "categoryId": 2,
+      "question": "Pick a soup",
       "optionOne": "Gazpacho",
       "optionTwo": "Laksa",
       "optionThree": "Pumpkin",
       "optionFour": "Pea and Ham"
     },
     {
-      "id": 3,
+      "categoryId": 3,
+      "question": "Choose one character from Winnie the Pooh",
       "optionOne": "Roo",
       "optionTwo": "Pooh",
       "optionThree": "Owl",
       "optionFour": "Eeyore"
     },
     {
-      "id": 4,
+      "categoryId": 4,
+      "question": "Pick a colour",
       "optionOne": "Pink",
       "optionTwo": "Yellow",
       "optionThree": "Orange",
       "optionFour": "Blue"
     },
     {
-      "id": 5,
+      "categoryId": 5,
+      "question": "What's your favourite drink (out of the given options)?",
       "optionOne": "Gin and Tonic",
       "optionTwo": "Mojito",
       "optionThree": "Honeymead",
@@ -95,7 +89,7 @@
 
   "quizResults": [
     {
-      "id": 1,
+      "categoryId": 20,
       "resultOne": "Spring",
       "resultTwo": "Summer",
       "resultThree": "Autumn",

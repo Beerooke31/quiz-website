@@ -15,6 +15,11 @@ const routeConfig: Routes = [
     title: 'Quiz details',
   },
   {
+    path: 'details/:categoryId/:cardId',
+    component: DetailsComponent,
+    title: 'Card details',
+  },
+  {
     path: 'signup',
     component: SignupPageComponent,
     title: 'Signup page',

@@ -3,8 +3,7 @@ import { CommonModule } from '@angular/common';
 import { ActivatedRoute } from '@angular/router';
 import { QuizService } from '../quiz.service';
 import { QuizCategory } from '../quizcategory';
-import { QuizQuestions } from '../quiz-questions';
-import { QuizOptions } from '../quiz-options';
+import { QuizCards } from '../quiz-cards';
 import { QuizResults } from '../quiz-results';
 
 @Component({
@@ -22,15 +21,26 @@ import { QuizResults } from '../quiz-results';
         <h2 class="quiz-heading">{{ quizCategory?.title }}</h2>
         <p class="quiz-category">Quiz Topic: {{ quizCategory?.type }}</p>
       </section>
-      <section class="quiz">
-        <h2 class="quiz-question">{{ quizQuestions?.questionOne }}</h2>
-        <div class="options">
-          <p class="option1">{{ quizOptions?.optionOne }}</p>
-          <p class="option2">{{ quizOptions?.optionTwo }}</p>
-          <p class="option3">{{ quizOptions?.optionThree }}</p>
-          <p class="option4">{{ quizOptions?.optionFour }}</p>
+      <section class="quiz" *ngIf="quizCards">
+        <h2 class="quiz-question">{{ quizCards.question }}</h2>
+        <div class="Cards">
+          <button (click)="selectAnswer(quizCards.id, quizCards.optionOne)">
+            {{ quizCards.optionOne }}
+          </button>
+          <button (click)="selectAnswer(quizCards.id, quizCards.optionTwo)">
+            {{ quizCards.optionTwo }}
+          </button>
+          <button (click)="selectAnswer(quizCards.id, quizCards.optionThree)">
+            {{ quizCards.optionThree }}
+          </button>
+          <button (click)="selectAnswer(quizCards.id, quizCards.optionFour)">
+            {{ quizCards.optionFour }}
+          </button>
         </div>
       </section>
+      <ng-template #loading>
+        <p>Loading quiz options...</p>
+      </ng-template>
     </article>
   `,
   styleUrl: './details.component.css',
@@ -39,8 +49,8 @@ export class DetailsComponent {
   route: ActivatedRoute = inject(ActivatedRoute);
   quizService = inject(QuizService);
   quizCategory: QuizCategory | undefined;
-  quizOptions: QuizOptions | undefined;
-  quizQuestions: QuizQuestions | undefined;
+  quizCards: QuizCards | undefined;
+  selectedAnswers: { [cardId: number]: string } = {};
 
   constructor() {
     const quizCategoryId = parseInt(this.route.snapshot.params['id'], 10);
@@ -50,16 +60,14 @@ export class DetailsComponent {
         this.quizCategory = quizCategory;
       });
 
-    const quizQuestionId = parseInt(this.route.snapshot.params['id'], 10);
-    this.quizService
-      .getQuizQuestionById(quizQuestionId)
-      .then((quizQuestions) => {
-        this.quizQuestions = quizQuestions;
-      });
-
-    const quizOptionId = parseInt(this.route.snapshot.params['id'], 10);
-    this.quizService.getQuizOptionById(quizOptionId).then((quizOptions) => {
-      this.quizOptions = quizOptions;
+    const cardId = parseInt(this.route.snapshot.params['id'], 10);
+    this.quizService.getQuizCardById(cardId).then((quizCard) => {
+      this.quizCards = quizCard;
     });
+  }
+
+  selectAnswer(cardId: number, answer: string) {
+    this.selectedAnswers[cardId] = answer;
+    console.log(`Selected for card ${cardId}: ${answer}`);
   }
 }

@@ -1,7 +1,6 @@
 import { Injectable } from '@angular/core';
 import { QuizCategory } from './quizcategory';
-import { QuizQuestions } from './quiz-questions';
-import { QuizOptions } from './quiz-options';
+import { QuizCards } from './quiz-cards';
 import { QuizResults } from './quiz-results';
 
 @Injectable({
@@ -10,7 +9,7 @@ import { QuizResults } from './quiz-results';
 export class QuizService {
   listUrl = 'http://localhost:3000/quizzes';
   questionUrl = 'http://localhost:3000/quizQuestions';
-  optionUrl = 'http://localhost:3000/quizOptions';
+  cardUrl = 'http://localhost:3000/quizCards';
   resultUrl = 'http://localhost:3000/quizResults';
 
   async getAllQuizCategories(): Promise<QuizCategory[]> {
@@ -25,16 +24,11 @@ export class QuizService {
     return quizJson[0] ?? {};
   }
 
-  async getQuizQuestionById(id: number): Promise<QuizQuestions | undefined> {
-    const data = await fetch(`${this.questionUrl}?id=${id}`);
-    const quizJson = await data.json();
-    return quizJson[0] ?? {};
-  }
-
-  async getQuizOptionById(id: number): Promise<QuizOptions | undefined> {
-    const data = await fetch(`${this.optionUrl}?id=${id}`);
-    const quizJson = await data.json();
-    return quizJson[0] ?? {};
+  async getQuizCardById(id: number): Promise<QuizCards | undefined> {
+    const response = await fetch(this.cardUrl);
+    const data = await response.json();
+    const quizCard: QuizCards | undefined = data.quizCards.find((card: QuizCards) => card.id === id);
+    return quizCard;
   }
 
   async getQuizResultById(id: number): Promise<QuizResults | undefined> {

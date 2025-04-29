@@ -19,22 +19,22 @@ import { QuizResults } from '../quiz-results';
       />
       <section class="quiz-description">
         <h2 class="quiz-heading">{{ quizCategory?.title }}</h2>
-        <p class="quiz-category">Quiz Topic: {{ quizCategory?.type }}</p>
+        <p class="quiz-category">Quiz Category: {{ quizCategory?.type }}</p>
       </section>
       <section class="quiz" *ngIf="quizCards">
         <h2 class="quiz-question">{{ quizCards.question }}</h2>
         <div class="Cards">
-          <button (click)="selectAnswer(quizCards.id, quizCards.optionOne)">
-            {{ quizCards.optionOne }}
+          <button (click)="selectAnswer(quizCards.id, quizCards.options[0])">
+            {{ quizCards.options[0] }}
           </button>
-          <button (click)="selectAnswer(quizCards.id, quizCards.optionTwo)">
-            {{ quizCards.optionTwo }}
+          <button (click)="selectAnswer(quizCards.id, quizCards.options[1])">
+            {{ quizCards.options[1] }}
           </button>
-          <button (click)="selectAnswer(quizCards.id, quizCards.optionThree)">
-            {{ quizCards.optionThree }}
+          <button (click)="selectAnswer(quizCards.id, quizCards.options[2])">
+            {{ quizCards.options[2] }}
           </button>
-          <button (click)="selectAnswer(quizCards.id, quizCards.optionFour)">
-            {{ quizCards.optionFour }}
+          <button (click)="selectAnswer(quizCards.id, quizCards.options[3])">
+            {{ quizCards.options[3] }}
           </button>
         </div>
       </section>

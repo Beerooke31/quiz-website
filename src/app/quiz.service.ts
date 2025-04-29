@@ -26,9 +26,8 @@ export class QuizService {
 
   async getQuizCardById(id: number): Promise<QuizCards | undefined> {
     const response = await fetch(this.cardUrl);
-    const data = await response.json();
-    const quizCard: QuizCards | undefined = data.quizCards.find((card: QuizCards) => card.id === id);
-    return quizCard;
+    const quizCard = await response.json();
+    return quizCard[0] ?? {};
   }
 
   async getQuizResultById(id: number): Promise<QuizResults | undefined> {

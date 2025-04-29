@@ -14,7 +14,7 @@ import { RouterModule } from '@angular/router';
       crossorigin
     />
     <h2 class="quiz-heading">{{ quizCategory.title }}</h2>
-    <p class="quiz-type">{{ quizCategory.type }}</p>
+    <p class="quiz-type">Category: {{ quizCategory.type }}</p>
     <a [routerLink]="['/details', quizCategory.id]">Learn More</a>
   </section>`,
   styleUrls: ['./quiz-category.component.css'],

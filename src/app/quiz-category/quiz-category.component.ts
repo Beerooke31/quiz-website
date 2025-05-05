@@ -1,4 +1,5 @@
 import { Component, Input } from '@angular/core';
+// import { QuizService } from '../quiz.service';
 import { CommonModule } from '@angular/common';
 import { QuizCategory } from '../quizcategory';
 import { RouterModule } from '@angular/router';
@@ -20,5 +21,6 @@ import { RouterModule } from '@angular/router';
   styleUrls: ['./quiz-category.component.css'],
 })
 export class QuizCategoryComponent {
+  // quizCards: any[] = [];
   @Input() quizCategory!: QuizCategory;
 }

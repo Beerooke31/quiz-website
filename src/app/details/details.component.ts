@@ -1,10 +1,9 @@
-import { Component, inject } from '@angular/core';
+import { Component, inject, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { ActivatedRoute } from '@angular/router';
 import { QuizService } from '../quiz.service';
 import { QuizCategory } from '../quizcategory';
 import { QuizCards } from '../quiz-cards';
-import { QuizResults } from '../quiz-results';
 
 @Component({
   selector: 'app-details',
@@ -23,20 +22,18 @@ import { QuizResults } from '../quiz-results';
       </section>
       <section class="quiz" *ngIf="quizCards">
         <h2 class="quiz-question">{{ quizCards.question }}</h2>
-        <div class="Cards">
-          <button (click)="selectAnswer(quizCards.id, quizCards.options[0])">
-            {{ quizCards.options[0] }}
-          </button>
-          <button (click)="selectAnswer(quizCards.id, quizCards.options[1])">
-            {{ quizCards.options[1] }}
-          </button>
-          <button (click)="selectAnswer(quizCards.id, quizCards.options[2])">
-            {{ quizCards.options[2] }}
-          </button>
-          <button (click)="selectAnswer(quizCards.id, quizCards.options[3])">
-            {{ quizCards.options[3] }}
-          </button>
-        </div>
+        <ul>
+          <li *ngFor="let option of quizCards.options">
+            <label>
+              <input
+                type="radio"
+                name="question{{ quizCards.id }}"
+                [value]="option"
+              />
+              {{ option }}
+            </label>
+          </li>
+        </ul>
       </section>
       <ng-template #loading>
         <p>Loading quiz options...</p>
@@ -45,12 +42,11 @@ import { QuizResults } from '../quiz-results';
   `,
   styleUrl: './details.component.css',
 })
-export class DetailsComponent {
+export class DetailsComponent implements OnInit {
   route: ActivatedRoute = inject(ActivatedRoute);
   quizService = inject(QuizService);
   quizCategory: QuizCategory | undefined;
   quizCards: QuizCards | undefined;
-  selectedAnswers: { [cardId: number]: string } = {};
 
   constructor() {
     const quizCategoryId = parseInt(this.route.snapshot.params['id'], 10);
@@ -66,8 +62,9 @@ export class DetailsComponent {
     });
   }
 
-  selectAnswer(cardId: number, answer: string) {
-    this.selectedAnswers[cardId] = answer;
-    console.log(`Selected for card ${cardId}: ${answer}`);
+  ngOnInit(): void {
+    this.quizService.getQuizData().subscribe((data) => {
+      this.quizCards = data.quizCards;
+    });
   }
 }
